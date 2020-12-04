@@ -1,0 +1,33 @@
+<h1>New User</h1>
+
+<% if @user[:errors] %>
+  <h2>Errors validating user!</h2>
+
+  <% @user[:errors].each do |(key, errors)| %>
+    <ul>
+      <%= key %>: <%= errors.join(", ") %>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= form_tag action: "create" do %>
+  <p>
+    <label>Login
+      <%= tag :input, type: "text", name: "user[login]", value: @user[:record].login %>
+    </label>
+  </p>
+
+  <p>
+    <label>Password
+      <%= tag :input, type: "password", name: "user[password]", value: @user[:record].password %>
+    </label>
+  </p>
+
+  <p>
+    <label>Role
+      <%= tag :input, type: "text", name: "user[role]", value: @user[:record].role %>
+    </label>
+  </p>
+
+  <input type="submit" value="Create">
+<% end %>
